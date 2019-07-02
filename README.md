@@ -49,10 +49,8 @@ the rest of the instructions will be ran on the Pi via ssh on the PC
 
 
 ##Version List
-|  Version    | File Name   |
-|-|-|
-|  1.0.0 | ClockChurch1.0.0.zip   |
-|1.0.1|  ClockChurch1.0.1.zip  |
+1.0.0: ClockChurch1.0.0.zip
+1.0.1: ClockChurch1.0.1.zip
 
 
 
