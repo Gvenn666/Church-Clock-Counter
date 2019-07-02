@@ -18,13 +18,15 @@
 ## Setup
 1. on a pc, launch a terminal, the rest of the instructions will be assuming you are using an Ubuntu installation.
 
-2. connect the Pi to the pc via an ethernet cable, power the pi on.
+2. Set the network connection to "shared to other computers"
 
-3. run `ifconfig` to obtain the pc ip address
+3. connect the Pi to the pc via an ethernet cable, power the pi on.
 
-4. run `nmap <first, second & third part of pc ip>.0/24`
+4. run `ifconfig` to obtain the pc ip address
 
-5. ssh into to pi using the command `ssh pi@<pi ip>`
+5. run `nmap <first, second & third part of pc ip>.0/24`
+
+6. ssh into to pi using the command `ssh pi@<pi ip>`
 
 the rest of the instructions will be ran on the Pi via ssh on the PC
 
