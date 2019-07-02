@@ -30,6 +30,6 @@ BSM:5
 BSH:0.25
 BSD:1
 
-# | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick |
-# | Min Block                        | Min Block                        | Min Block                        |
-# | Hour Block                                                                                             |
+| Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick | Tick |
+| Min Block                        | Min Block                        | Min Block                        |
+| Hour Block                                                                                             |
