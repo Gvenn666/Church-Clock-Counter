@@ -1,4 +1,4 @@
-# Clock Counter 1.0.0
+# Clock Counter 1.1.0
 
 ## Requirements
 - Raspberry Pi
@@ -13,7 +13,7 @@
 - express
 - csv2json
 - internet
-- screen
+- GNU screen
 
 ## Setup
 1. on a pc, launch a terminal, the rest of the instructions will be assuming you are using an Ubuntu installation.
@@ -36,14 +36,14 @@ the rest of the instructions will be ran on the Pi via ssh on the PC
 
 3. install npm `sudo apt install npm`
 
-4. Download the Zip file containing the source files using `wget https://raw.githubusercontent.com/Gvenn666/Church-Clock-Counter/master/ClockChurchX.X.X.zip`
+4. Download the Zip file containing the source files using `wget https://raw.githubusercontent.com/Gvenn666/Church-Clock-Counter/master/Install_X.X.X.zip`
 
 5. Extract the zip file using unzip `unzip <file>`
 
-6. install screen to allow for multitasking through the command line 
+6. install GNU screen to allow for multitasking through the command line 
 `sudo apt install screen`
 
-7. run screen using the command `screen`
+7. run GNU screen using the command `screen`
 
 8. run the python script from the current screen and then press ctrl-A and ctrl-D in succession to detach from the current screen
 
