@@ -1,7 +1,5 @@
 # Clock Counter 1.0.0
 
-[TOC]
-
 ## Requirements
 - Raspberry Pi
 - Digital Sensor, (Active Low)
@@ -17,7 +15,7 @@
 - internet
 - screen
 
-##Setup
+## Setup
 1. Install Python3 `sudo apt install python3`
 
 2. Install node `sudo apt install node`
