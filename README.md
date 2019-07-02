@@ -34,7 +34,7 @@ the rest of the instructions will be ran on the Pi via ssh on the PC
 
 3. install npm `sudo apt install npm`
 
-4. Download the Zip file containing the source files using `wget https://raw.githubusercontent.com/Gvenn666/Church-Clock-Counter/master/ClockChurch1.0.0.zip`
+4. Download the Zip file containing the source files using `wget https://raw.githubusercontent.com/Gvenn666/Church-Clock-Counter/master/ClockChurch1.0.1.zip`
 
 5. Extract the zip file using unzip `unzip <file>`
 
@@ -46,4 +46,13 @@ the rest of the instructions will be ran on the Pi via ssh on the PC
 8. run the python script from the current screen and then press ctrl-A and ctrl-D in succession to detach from the current screen
 
 9. run server.js using the command `sudo node server.js`
+
+
+##Version List
+|  Version    | File Name   |
+|-|-|
+|  1.0.0 | ClockChurch1.0.0.zip   |
+|1.0.1|  ClockChurch1.0.1.zip  |
+
+
 
