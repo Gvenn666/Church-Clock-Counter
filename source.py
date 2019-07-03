@@ -1,6 +1,8 @@
 import RPi.GPIO as gpio
 import time
+
 begin = time.time()
+
 curr = 0
 period = 1
 tick = 0
@@ -8,6 +10,7 @@ blockSizeMins = 5
 diffSum = 0
 avgSum = 0
 block = 0
+
 timeStampsMin = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 timeStampsHour = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 timeStampsDay = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -20,14 +23,6 @@ gpio.setwarnings(False)
 gpio.setmode(gpio.BCM)
 gpio.setup(hallSensor,gpio.IN)
 gpio.setup(led, gpio.OUT)
-
-l1Block = 0;
-l2Block = 0;
-l3Block = 0;
-
-l1start = 0
-l2start = 0
-l3start = 0
 
 ticksInSecond = 1 / period
 ticksInMinute = 60 * ticksInSecond
@@ -50,16 +45,9 @@ hours = float(settings.readline())
 days = float(settings.readline())
 debug = int(settings.readline())
 
+filename = "./public/data.txt"
 
-ticksInSecond = 1 / period
-ticksInMinute = 60 * ticksInSecond
-ticksInHour = 60 * ticksInMinute
-ticksInDay = 24 * ticksInHour
-
-
-filename = "./public/data"
-
-with open(filename+".txt", "w+") as csv:
+with open(filename, "w+") as csv:
     csv.write("Date,Tick,"+str(mins)+" Min(s),"+str(hours)+" Hour(s),"+str(days)+" Day(s)\n")
 
 i,j,k = 0,0,0
@@ -96,7 +84,7 @@ while(True):
             print(str(blockSize)+" Minute Diff: %2.3fs "%(diffMin))
             i += 1
             i %= l
-            with open(filename+".txt","a") as csv:
+            with open(filename,"a") as csv:
                 csv.write(time.ctime(time.time())+",")
                 csv.write(str(tick)+",")
                 if((diffMin == 0) or (diffMin > 999)):
