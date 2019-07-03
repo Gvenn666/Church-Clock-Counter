@@ -27,8 +27,8 @@
 
 # .conf File Format
 
-Period Of Swing
-Minute Block Size
-Hour Block Size
-Day Block Count
-Debug Value [0/1]
+- Period Of Swing
+- Minute Block Size
+- Hour Block Size
+- Day Block Count
+- Debug Value [0/1]
