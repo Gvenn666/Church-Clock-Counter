@@ -8,7 +8,8 @@ blockSizeMins = 5
 diffSum = 0
 avgSum = 0
 block = 0
-
+       blockTypeSecs = secsInDay
+     
 timeStampsMin = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 timeStampsHour = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 timeStampsDay = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -43,6 +44,8 @@ hours = float(settings.readline())
 days = float(settings.readline())
 debug = int(settings.readline())
 
+debounce = float(settings.readline())
+
 filename = "./public/data.txt"
 
 with open(filename, "w+") as csv:
@@ -60,7 +63,7 @@ while(True):
     timeStamp = time.time();
 
     gpio.output(led,1)
-    time.sleep(0.100)
+    time.sleep(debounce)
     gpio.output(led,0)
 
     if(debug == 1):
