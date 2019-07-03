@@ -1,6 +1,6 @@
 # Documentation
 ## Dependencies
-- Raspberry Pi or equivilant
+- Raspberry Pi or compatible-SBC
 - Ubuntu or compatible Linux Distro
 - Python3
 - Node
@@ -32,3 +32,11 @@
 - Hour Block Size
 - Day Block Count
 - Debug Value [0/1]
+
+# GPIO Pinout
+- +5v =>  VCC, 10Kohm Resistor
+- GND =>  GND
+- PIN2 => DOUT
+- 10KO => DOUT
+
+
