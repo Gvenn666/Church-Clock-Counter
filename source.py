@@ -1,8 +1,6 @@
 import RPi.GPIO as gpio
 import time
 
-begin = time.time()
-
 curr = 0
 period = 1
 tick = 0
@@ -52,24 +50,24 @@ with open(filename, "w+") as csv:
 
 i,j,k = 0,0,0
 
+begin = time.time()
+
 while(True):
     while(gpio.input(hallSensor) == 1):
-        pass
-    time.sleep(0.01)
-    
-    time.sleep(period / 4)
+        continue
+
+    tick += 1
+    timeStamp = time.time();
+
     gpio.output(led,1)
     time.sleep(0.100)
     gpio.output(led,0)
-    tick += 1
+
     if(debug == 1):
         print("Tick #"+str(tick)+"!")
-        print("time (System): "+time.ctime(time.time()))
+        print("time (System): "+time.ctime(timeStamp))
         print("time (Pendulum): "+time.ctime((tick * period) + begin))
 
-    
-    
-    timeStamp = time.time();
     
     blockTypeTicks = ticksInMinute
     blockTypeSecs = secsInMin
