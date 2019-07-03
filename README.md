@@ -1,4 +1,4 @@
-# Clock Counter 1.1.0
+# Clock Counter 1.2.0
 
 ## Requirements
 - Raspberry Pi
