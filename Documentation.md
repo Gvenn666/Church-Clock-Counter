@@ -25,6 +25,13 @@
 - BlockSizeHours is equal to the hours in a block x ticks in 1 hour
 - BlockSizeDays is equal to the days in a block x ticks in 1 day
 
+# Server.js
+- Built Using Node.js
+- Uses Express To Host Webpages
+- Has Two api inputs, api/csv and api/json
+- api/json serves a CSV file converted Into A JSON file
+- api/csv serves a CSV file as a txt file
+
 # .conf File Format
 
 - Period Of Swing
@@ -32,6 +39,7 @@
 - Hour Block Size
 - Day Block Count
 - Debug Value [0/1]
+- Debounce
 
 # GPIO Pinout
 - +5v =>  VCC, 10Kohm Resistor
