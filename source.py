@@ -1,15 +1,20 @@
 import RPi.GPIO as gpio
 import time
 
-curr = 0
 period = 1
 tick = 0
 blockSizeMins = 5
-diffSum = 0
-avgSum = 0
-block = 0
-       blockTypeSecs = secsInDay
-     
+
+settings = open("./.conf")
+period = float(settings.readline())
+
+mins = float(settings.readline())
+hours = float(settings.readline())
+days = float(settings.readline())
+debug = int(settings.readline())
+
+debounce = float(settings.readline())
+
 timeStampsMin = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 timeStampsHour = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 timeStampsDay = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -35,16 +40,6 @@ secsInDay = secsInHour * 24
 diffDay = 0
 diffHour = 0
 diffMin = 0
-
-settings = open("./.conf")
-period = float(settings.readline())
-
-mins = float(settings.readline())
-hours = float(settings.readline())
-days = float(settings.readline())
-debug = int(settings.readline())
-
-debounce = float(settings.readline())
 
 filename = "./public/data.txt"
 
@@ -81,12 +76,12 @@ while(True):
         timeStampsMin[i] = timeStamp
         l = len(timeStampsMin)
         if(l > 1):
-            diffMin = abs(timeStampsMin[(i) % l] - timeStampsMin[(i - 1) % l] - blockTypeSecs * blockSize)
+            diffMin = abs(timeStampsMin[(i) % l] - timeStampsMin[(i - 1) % l]) - blockTypeSecs * blockSize
             print(str(blockSize)+" Minute Diff: %2.3fs "%(diffMin))
             i += 1
             i %= l
             with open(filename,"a") as csv:
-                csv.write(time.ctime(time.time())+",")
+                csv.write(time.ctime(timeStamp)+",")
                 csv.write(str(tick)+",")
                 if((diffMin == 0) or (diffMin > 999)):
                     csv.write("-,")
@@ -110,7 +105,7 @@ while(True):
             timeStampsHour[j] = timeStamp
             l = len(timeStampsHour)
             if(l > 1):
-                diffHour = abs(timeStampsHour[(j) % l] - timeStampsHour[(j - 1) % l] - blockTypeSecs * blockSize)
+                diffHour = abs(timeStampsHour[(j) % l] - timeStampsHour[(j - 1) % l]) - blockTypeSecs * blockSize
                 print(str(blockSize)+" Hour Diff: %2.3fs "%(diffHour))
                 j += 1
                 j %= l
@@ -122,7 +117,7 @@ while(True):
             timeStampsDay[k] = timeStamp
             l = len(timeStampsDay)
             if(l > 1):
-                diffDay = abs(timeStampsDay[(k) % l] - timeStampsDay[(k - 1) % l] - blockTypeSecs * blockSize)
+                diffDay = abs(timeStampsDay[(k) % l] - timeStampsDay[(k - 1) % l]) - blockTypeSecs * blockSize
                 print(str(blockSize)+" Day Diff: %2.3fs "%(diffDay))
                 k += 1
                 k %= l
