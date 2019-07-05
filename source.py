@@ -15,9 +15,9 @@ debug = int(settings.readline())
 
 debounce = float(settings.readline())
 
-timeStampsMin = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-timeStampsHour = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-timeStampsDay = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+timeStampsMin = [0,0]
+timeStampsHour = [0,0]
+timeStampsDay = [0,0]
 
 hallSensor = 2
 led = 3
@@ -74,52 +74,46 @@ while(True):
         print("Checking for tick modulo "+str((blockTypeTicks * blockSize)))
     if(tick % (blockTypeTicks * blockSize) == 0):
         timeStampsMin[i] = timeStamp
-        l = len(timeStampsMin)
-        if(l > 1):
-            diffMin = abs(timeStampsMin[(i) % l] - timeStampsMin[(i - 1) % l]) - blockTypeSecs * blockSize
-            print(str(blockSize)+" Minute Diff: %2.3fs "%(diffMin))
-            i += 1
-            i %= l
-            with open(filename,"a") as csv:
-                csv.write(time.ctime(timeStamp)+",")
-                csv.write(str(tick)+",")
-                if((diffMin == 0) or (diffMin > 999)):
-                    csv.write("-,")
-                else:
-                    csv.write("%3.3f,"%diffMin)
-                if((diffHour == 0) or (diffHour > 999)):
-                    csv.write("-,")
-                else:
-                    csv.write("%3.3f,"%diffHour)
-                if((diffDay == 0) or (diffDay > 999)):
-                    csv.write("-,")
-                else:
-                    csv.write("%3.3f,"%diffDay)
-                csv.write("\n")
+        diffMin = abs(timeStampsMin[i] - timeStampsMin[(i - 1) % 2]) - blockTypeSecs * blockSize
+        print(str(blockSize)+" Minute Diff: %2.3fs "%(diffMin))
+        i += 1
+        i %= 2
+        with open(filename,"a") as csv:
+            csv.write(time.ctime(timeStamp)+",")
+            csv.write(str(tick)+",")
+            if((diffMin == 0) or (diffMin > 999)):
+                csv.write("-,")
+            else:
+                csv.write("%3.3f,"%diffMin)
+            if((diffHour == 0) or (diffHour > 999)):
+                csv.write("-,")
+            else:
+                csv.write("%3.3f,"%diffHour)
+            if((diffDay == 0) or (diffDay > 999)):
+                csv.write("-,")
+            else:
+                csv.write("%3.3f,"%diffDay)
+            csv.write("\n")
 
 
-        blockTypeTicks = ticksInHour
-        blockTypeSecs = secsInHour
-        blockSize = hours
-        if(tick % (blockTypeTicks * blockSize) == 0):
-            timeStampsHour[j] = timeStamp
-            l = len(timeStampsHour)
-            if(l > 1):
-                diffHour = abs(timeStampsHour[(j) % l] - timeStampsHour[(j - 1) % l]) - blockTypeSecs * blockSize
-                print(str(blockSize)+" Hour Diff: %2.3fs "%(diffHour))
-                j += 1
-                j %= l
+    blockTypeTicks = ticksInHour
+    blockTypeSecs = secsInHour
+    blockSize = hours
+    if(tick % (blockTypeTicks * blockSize) == 0):
+        timeStampsHour[j] = timeStamp
+        diffHour = abs(timeStampsHour[j] - timeStampsHour[(j - 1) % 2]) - blockTypeSecs * blockSize
+        print(str(blockSize)+" Hour Diff: %2.3fs "%(diffHour))
+        j += 1
+        j %= 2
 
-        blockTypeTicks = ticksInDay
-        blockTypeSecs = secsInDay
-        blockSize = days
-        if(tick % (blockTypeTicks * blockSize) == 0):
-            timeStampsDay[k] = timeStamp
-            l = len(timeStampsDay)
-            if(l > 1):
-                diffDay = abs(timeStampsDay[(k) % l] - timeStampsDay[(k - 1) % l]) - blockTypeSecs * blockSize
-                print(str(blockSize)+" Day Diff: %2.3fs "%(diffDay))
-                k += 1
-                k %= l
+    blockTypeTicks = ticksInDay
+    blockTypeSecs = secsInDay
+    blockSize = days
+    if(tick % (blockTypeTicks * blockSize) == 0):
+        timeStampsDay[k] = timeStamp
+        diffDay = abs(timeStampsDay[k] - timeStampsDay[(k - 1) % 2]) - blockTypeSecs * blockSize
+        print(str(blockSize)+" Day Diff: %2.3fs "%(diffDay))
+        k += 1
+        k %= 2
 
 
